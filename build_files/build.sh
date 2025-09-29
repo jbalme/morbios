@@ -10,7 +10,11 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf5 install -y tmux 
+
+COPRS="atim/starship erikreider/SwayNotificationCenter yalter/niri-git tofik/nwg-shell"
+for COPR in $COPRS; do dnf5 -y copr enable $COPR; done
+dnf5 -y install wl-clipboard distrobox alsa-firmware polkit dbus-tools dbus-daemon qt5-wayland qt6-wayland wireplumber pipewire pulseaudio-utils network-manager-applet NetworkManager-openvpn NetworkManager-openvpn-gnome NetworkManager-openconnect NetworkManager-openconnect-gnome bluez bluez-tools blueman nautilus gvfs-mtp gvfs-gphoto2 gvfs-smb gvfs-nfs gvfs-fuse gvfs-archive heif-pixbuf-loader ffmpeg ffmpeg-libs ffmpegthumbnailer pipewire-libs-extra libfdk-aac gstreamer1-plugins-bad gstreamer1-plugins-ugly gnome-keyring luajit luajit-devel spice-server spice-vdagent spice-webdavd mullvad micro starship swww swaync niri greetd greetd-selinux xwayland-satellite adw-gtk3-theme xdg-desktop-portal-gnome firacode-nerd-fonts fish gtklock wofi fuzzel eza bat doas tailscale alacritty librewolf hyfetch fastfetch nwg-look android-tools
+for COPR in $COPRS; do dnf5 -y copr disable $COPR; done
 
 # Use a COPR Example:
 #
